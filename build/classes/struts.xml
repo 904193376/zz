@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+    
+<struts>
+    <!-- 
+                      包，可以多个，name不能重复 
+         namespace（命名空间，路径）默认是/,
+         extends继承,(struts-default是strust的默认配置)
+    -->
+    <package name="demo" namespace="/" extends="struts-default">
+     <!--
+                       一个包内可以有多个action，不能重名。
+         action指定请求的Action类。
+         method（方法）:默认的是execute（也可以改成定义类的某个方法）
+     -->
+       <action name="hello" class="com.chinasofti.action.HelloAction">
+       <!-- 
+          result指定jsp文件。可以有多个result
+          name来自于action的反馈
+          result type表示了用何种方式跳转至哪个页面，并且可以使用<param>子标签来输入该方式需要的数据。
+          type 是以何种方式跳转，转发or重定向，默认是转发
+                         四种跳转方式：
+          Dispatcher Result	转发至下一jsp页面。参数和request对象数据继续保留。
+          Chain Result	转发至下一Action。参数和request对象数据继续保留。
+          Redirect Result	重定向到下一jsp页面。只能通过参数或session传递数据。request对象内容被释放。
+          Redirect Action Result	重定向到下一jsp页面。只能通过参数或session传递数据。request对象内容被释放。
+        -->
+           <result name="success" type="dispatcher">
+             /hello.jsp
+           </result>
+       </action>
+       
+       <action name="login" class="com.chinasofti.action.LoginAction">
+          <result name="succ">
+             /hello.jsp
+          </result>
+       </action>
+       
+       <action name="loginent" class="com.chinasofti.action.LoginEntAction">
+         <result name="ok">
+           /hello.jsp
+         </result>
+       </action>
+       
+       
+       
+    </package>
+</struts>
